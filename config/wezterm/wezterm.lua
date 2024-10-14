@@ -6,6 +6,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
+config.enable_wayland = false
 config.default_prog = { "/usr/bin/zsh" }
 
 local act = wezterm.action
@@ -28,12 +29,12 @@ config.keys = {
 	},
 	{
 		key = "w",
-		mods = "CTRL",
+		mods = "CTRL|SHIFT",
 		action = act.CloseCurrentPane({ confirm = false }),
 	},
 	{
 		key = "W",
-		mods = "CTRL|SHIFT",
+		mods = "CTRL|SHIFT|ALT",
 		action = act.CloseCurrentTab({ confirm = false }),
 	},
 	{

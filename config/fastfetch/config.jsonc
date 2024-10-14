@@ -1,0 +1,91 @@
+{
+    "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+    "logo": {
+        "color": {
+            "1": "blue",
+            "2": "blue",
+            "3": "blue",
+            "4": "blue",
+            "5": "blue",
+            "6": "blue",
+            "7": "blue",
+            "8": "blue",
+            "9": "blue"
+        }
+    },
+    "display": {
+        "separator": "->   ",
+        "color": {
+            "keys": "green",
+            "separator": "green"
+        }
+    },
+    "modules": [
+        {
+            "key": "Host        ",
+            "type": "host"
+        },
+        {
+            "key": "CPU         ",
+            "type": "cpu"
+        },
+        {
+            "key": "GPU         ",
+            "type": "gpu"
+        },
+        {
+            "key": "RAM         ",
+            "type": "physicalmemory"
+        },
+        {
+            "key": "Storage     ",
+            "type": "physicaldisk"
+        },
+        {
+            "key": "Bootmgr     ",
+            "type": "bootmgr"
+        },
+        {
+            "key": "Board       ",
+            "type": "board"
+        },
+        {
+            "key": "Display     ",
+            "type": "display"
+        },
+        {
+            "key": "OpenGL      ",
+            "type": "opengl"
+        },
+        {
+            "key": "Bluetooth   ",
+            "type": "bluetoothradio"
+        },
+        {
+            "key": "Sound       ",
+            "type": "sound"
+        },
+        "break",
+        {
+            "key": "OS          ",
+            "type": "os"
+        },
+        {
+            "key": "Shell       ",
+            "type": "shell"
+        },
+        "break",
+        {
+            "key": "Terminal    ",
+            "type": "terminal"
+        },
+        {
+            "key": "Font        ",
+            "type": "terminalfont"
+        },
+        {
+            "key": "Editor      ",
+            "type": "editor"
+        }
+    ]
+}

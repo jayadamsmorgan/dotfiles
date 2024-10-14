@@ -1,2 +1,4 @@
-nvim/plugin/
+config/nvim/plugin/
+config/btop/btop.log
+
 .DS_Store

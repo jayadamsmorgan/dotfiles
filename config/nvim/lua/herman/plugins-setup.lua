@@ -144,9 +144,6 @@ return packer.startup(function(use)
 	-- new animated statusline
 	use("windwp/windline.nvim")
 
-	-- tokyonight theme
-	use("folke/tokyonight.nvim")
-
 	-- packer can manage itself
 	use("wbthomason/packer.nvim")
 
