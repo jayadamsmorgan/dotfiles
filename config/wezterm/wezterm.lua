@@ -6,22 +6,19 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.enable_wayland = false
-config.default_prog = { "/usr/bin/zsh" }
-
 local act = wezterm.action
 config.keys = {
 	{
-		key = "|",
-		mods = "CTRL|SHIFT",
+		key = "K",
+		mods = "CMD|SHIFT",
 		action = act.SplitPane({
 			direction = "Right",
 			size = { Percent = 50 },
 		}),
 	},
 	{
-		key = "_",
-		mods = "CTRL|SHIFT",
+		key = "J",
+		mods = "CMD|SHIFT",
 		action = act.SplitPane({
 			direction = "Down",
 			size = { Percent = 50 },
@@ -29,82 +26,82 @@ config.keys = {
 	},
 	{
 		key = "w",
-		mods = "CTRL|SHIFT",
+		mods = "CMD",
 		action = act.CloseCurrentPane({ confirm = false }),
 	},
 	{
 		key = "W",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CMD|SHIFT",
 		action = act.CloseCurrentTab({ confirm = false }),
 	},
 	{
 		key = "H",
-		mods = "CTRL|SHIFT",
+		mods = "CMD|SHIFT",
 		action = act.ActivatePaneDirection("Left"),
 	},
 	{
 		key = "LeftArrow",
-		mods = "CTRL|SHIFT",
+		mods = "CMD|SHIFT",
 		action = act.ActivatePaneDirection("Left"),
 	},
 	{
 		key = "L",
-		mods = "CTRL|SHIFT",
+		mods = "CMD|SHIFT",
 		action = act.ActivatePaneDirection("Right"),
 	},
 	{
 		key = "RightArrow",
-		mods = "CTRL|SHIFT",
+		mods = "CMD|SHIFT",
 		action = act.ActivatePaneDirection("Right"),
 	},
-	{
-		key = "J",
-		mods = "CTRL|SHIFT",
-		action = act.ActivatePaneDirection("Down"),
-	},
+	-- {
+	-- 	key = "J",
+	-- 	mods = "CMD|SHIFT",
+	-- 	action = act.ActivatePaneDirection("Down"),
+	-- },
 	{
 		key = "DownArrow",
-		mods = "CTRL|SHIFT",
+		mods = "CMD|SHIFT",
 		action = act.ActivatePaneDirection("Down"),
 	},
-	{
-		key = "K",
-		mods = "CTRL|SHIFT",
-		action = act.ActivatePaneDirection("Up"),
-	},
+	-- {
+	-- 	key = "K",
+	-- 	mods = "CMD|SHIFT",
+	-- 	action = act.ActivatePaneDirection("Up"),
+	-- },
 	{
 		key = "UpArrow",
-		mods = "CTRL|SHIFT",
+		mods = "CMD|SHIFT",
 		action = act.ActivatePaneDirection("Up"),
 	},
 	{
 		key = "{",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CMD|SHIFT|ALT",
 		action = act.MoveTabRelative(-1),
 	},
 	{
 		key = "}",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CMD|SHIFT|ALT",
 		action = act.MoveTabRelative(1),
 	},
 	{
 		key = "H",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CMD|SHIFT|ALT",
 		action = act.AdjustPaneSize({ "Left", 1 }),
 	},
 	{
 		key = "J",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CMD|SHIFT|ALT",
 		action = act.AdjustPaneSize({ "Down", 1 }),
 	},
 	{
 		key = "K",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CMD|SHIFT|ALT",
 		action = act.AdjustPaneSize({ "Up", 1 }),
 	},
 	{
 		key = "L",
-		mods = "CTRL|SHIFT|ALT",
+		mods = "CMD|SHIFT|ALT",
 		action = act.AdjustPaneSize({ "Right", 1 }),
 	},
 }
@@ -120,7 +117,7 @@ config.use_fancy_tab_bar = false
 config.window_decorations = "RESIZE"
 
 config.color_scheme = "Dracula (Official)"
-config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
+config.font = wezterm.font("JetBrains Mono", { weight = "DemiBold" })
 config.font_size = 16
 
 return config

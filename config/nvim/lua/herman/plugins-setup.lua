@@ -28,6 +28,10 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
+	use({
+		"~/Documents/clanger.nvim",
+	})
+
 	-- Startup plugin
 	use({
 		"startup-nvim/startup.nvim",

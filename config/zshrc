@@ -5,10 +5,10 @@ fi
 
 # Plugins
 plugins=(git)
-# fpath=(~/.zsh $fpath) # Add completion functions to fpath
-source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fpath=(~/.zsh $fpath) # Add completion functions to fpath
+source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 setopt interactive_comments # Fix for zsh-autocomplete
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ## User configuration
 export CLICOLOR=1
@@ -34,7 +34,7 @@ eval $(thefuck --alias)
 ## Toolchains & languages
 
 # Java
-# ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
 
 ## Aliases
 alias sshserver="ssh root@$SERVER_IP"
@@ -48,6 +48,7 @@ alias st="swift test 2>&1 | xcbeautify"
 alias sb="swift build"
 alias sr="swift run"
 
-# export PATH=$PATH:~/.platformio/packages/toolchain-xtensa-esp32s3/bin
-# export PATH=$PATH:/Applications/Docker.app/Contents/Resources/bin
-# export PATH=$PATH:~/Qt/6.7.2/macos/bin
+export PATH=$PATH:~/.platformio/packages/toolchain-xtensa-esp32s3/bin
+export PATH=$PATH:/Applications/Docker.app/Contents/Resources/bin
+export PATH=$PATH:~/Qt/6.7.2/macos/bin
+export PATH=$PATH:~/.local/bin
