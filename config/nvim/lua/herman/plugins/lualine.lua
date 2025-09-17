@@ -56,12 +56,12 @@ require("lualine").setup({
 				icon_only = true,
 				separator = "",
 				padding = { left = 1, right = 0 },
-				color = { fg = colors.grey, bg = "#292A35" },
+				color = { fg = colors.grey, bg = "none" },
 			},
 			{
 				"filename",
 				symbols = { modified = "  ", readonly = " readonly", unnamed = "" },
-				color = { fg = colors.grey, bg = "#292A35" },
+				color = { fg = colors.grey, bg = "none" },
 			},
 		},
 		lualine_c = {
@@ -73,7 +73,7 @@ require("lualine").setup({
 					info = " ",
 					hint = "󰝶 ",
 				},
-				color = { fg = colors.grey, bg = "#292A35" },
+				color = { fg = colors.grey, bg = "none" },
 			},
 		},
 		lualine_x = {
@@ -84,7 +84,7 @@ require("lualine").setup({
 					return icon .. (status.message or "")
 				end,
 				cond = function()
-					local ok, clients = pcall(vim.lsp.get_active_clients, { name = "copilot", bufnr = 0 })
+					local ok, clients = pcall(vim.lsp.get_clients, { name = "copilot", bufnr = 0 })
 					return ok and #clients > 0
 				end,
 				color = function()
@@ -98,19 +98,19 @@ require("lualine").setup({
 			{
 				"branch",
 				icon = "",
-				color = { fg = colors.green, bg = "#292A35" },
+				color = { fg = colors.green, bg = "none" },
 			},
 			{ "diff" },
 		},
 		lualine_y = {
 			{
 				"location",
-				color = { fg = colors.purple, bg = "#292A35" },
+				color = { fg = colors.purple, bg = "none" },
 			},
 		},
 		lualine_z = {
 			{
-				color = { fg = colors.black, bg = colors.grey },
+				color = { fg = colors.black, bg = "none" },
 			},
 		},
 	},

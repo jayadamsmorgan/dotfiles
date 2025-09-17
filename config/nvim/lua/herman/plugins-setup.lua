@@ -28,6 +28,11 @@ end
 
 -- add list of plugins to install
 return packer.startup(function(use)
+    use({
+        "jayadamsmorgan/clanger.nvim",
+        requires = { "neovim/nvim-lspconfig"},
+    })
+
 	-- Startup plugin
 	use({
 		"startup-nvim/startup.nvim",
@@ -46,17 +51,6 @@ return packer.startup(function(use)
 	-- Highlight colors
 	use("brenoprata10/nvim-highlight-colors")
 
-	-- Cyberdream theme
-	use("scottmckendry/cyberdream.nvim")
-
-	use({
-		"jayadamsmorgan/PklLanguageServer",
-		requires = {
-			"neovim/nvim-lspconfig",
-		},
-		run = "mv Editors/Neovim/pklls-nvim/* .",
-	})
-
 	-- Pkl plugin
 	use({
 		"apple/pkl-neovim",
@@ -71,58 +65,6 @@ return packer.startup(function(use)
 		requires = {
 			"nvim-lua/plenary.nvim",
 		},
-	})
-
-	-- Copilot Lua
-	use({
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		config = function()
-			require("copilot").setup({
-				panel = {
-					enabled = false,
-					auto_refresh = false,
-					keymap = {
-						jump_prev = "[[",
-						jump_next = "]]",
-						accept = "<CR>",
-						refresh = "gr",
-						open = "<M-CR>",
-					},
-					layout = {
-						position = "bottom", -- | top | left | right
-						ratio = 0.4,
-					},
-				},
-				suggestion = {
-					enabled = false,
-					auto_trigger = true,
-					debounce = 75,
-					keymap = {
-						accept = "<M-l>",
-						accept_word = false,
-						accept_line = false,
-						next = "<M-]>",
-						prev = "<M-[>",
-						dismiss = "<C-]>",
-					},
-				},
-				filetypes = {
-					yaml = false,
-					markdown = false,
-					help = false,
-					gitcommit = false,
-					gitrebase = false,
-					hgcommit = false,
-					svn = false,
-					cvs = false,
-					["."] = false,
-				},
-				copilot_node_command = "node", -- Node.js version must be > 18.x
-				server_opts_overrides = {},
-			})
-		end,
 	})
 
 	-- Undotree
@@ -190,7 +132,6 @@ return packer.startup(function(use)
 	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
 
 	-- configuring lsp servers
-	use("ranjithshegde/ccls.nvim")
 	use("neovim/nvim-lspconfig") -- easily configure language servers
 	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
 	use({
@@ -201,12 +142,7 @@ return packer.startup(function(use)
 			{ "nvim-treesitter/nvim-treesitter" },
 		},
 	}) -- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
 	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
-
-	-- formatting & linting
-	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
 
 	-- treesitter configuration
 	use({

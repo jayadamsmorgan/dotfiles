@@ -28,7 +28,7 @@ config.keys = {
 		}),
 	},
 	{
-		key = "w",
+		key = "W",
 		mods = "CTRL|SHIFT",
 		action = act.CloseCurrentPane({ confirm = false }),
 	},
@@ -115,12 +115,13 @@ wezterm.on("gui-startup", function(cmd)
 	window:gui_window():maximize()
 end)
 
+config.window_background_opacity = 0.9
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
 config.window_decorations = "RESIZE"
 
 config.color_scheme = "Dracula (Official)"
 config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
-config.font_size = 16
+config.font_size = 25
 
 return config

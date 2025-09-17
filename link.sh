@@ -1,11 +1,23 @@
 #!/bin/sh
 
-mkdir -p ~/.config
+CONFIG_DIR="$HOME/.config"
 
-ln -s ~/dotfiles/config/zshrc ~/.zshrc
-ln -s ~/dotfiles/config/nvim ~/.config/nvim
-ln -s ~/dotfiles/config/wezterm ~/.config/wezterm
-ln -s ~/dotfiles/config/btop ~/.config/btop
-ln -s ~/dotfiles/config/hypr ~/.config/hypr
-ln -s ~/dotfiles/config/fastfetch ~/.config/fastfetch
-ln -s ~/dotfiles/config/fuzzel ~/.config/fuzzel
+mkdir -p $CONFIG_DIR
+
+rm -rf $HOME/.zshrc
+rm -rf $CONFIG_DIR/nvim
+rm -rf $CONFIG_DIR/wezterm
+rm -rf $CONFIG_DIR/btop
+rm -rf $CONFIG_DIR/hypr
+rm -rf $CONFIG_DIR/fastfetch
+rm -rf $CONFIG_DIR/fuzzel
+rm -rf $CONFIG_DIR/waybar
+
+ln -s $PWD/config/zshrc $HOME/.zshrc
+ln -s $PWD/config/nvim $CONFIG_DIR/nvim
+ln -s $PWD/config/wezterm $CONFIG_DIR/wezterm
+ln -s $PWD/config/btop $CONFIG_DIR/btop
+ln -s $PWD/config/hypr $CONFIG_DIR/hypr
+ln -s $PWD/config/fastfetch $CONFIG_DIR/fastfetch
+ln -s $PWD/config/fuzzel $CONFIG_DIR/fuzzel
+ln -s $PWD/config/waybar $CONFIG_DIR/waybar

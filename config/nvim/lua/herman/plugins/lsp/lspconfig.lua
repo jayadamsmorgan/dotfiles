@@ -19,13 +19,16 @@ local on_attach = function(_, bufnr)
 
 	-- set keybinds
 	keymap.set("n", "gf", "<cmd>Lspsaga finder<CR>", opts) -- show definition, references
-	keymap.set("n", "gD", "<Cmd>lua vim.lsp.buf.declaration()<CR>", opts) -- got to declaration
+    keymap.set("n", "gD", "<cmd>Lspsaga goto_definition<CR>", opts) -- go to declaration
 	keymap.set("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts) -- see definition and make edits in window
 	keymap.set("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts) -- go to implementation
+    keymap.set("n", "gh", "<cmd>ClangdSwitchSourceHeader<CR>", opts) -- C switch header/source
 	keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts) -- see available code actions
 	keymap.set("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts) -- smart rename
 	keymap.set("n", "<leader>D", "<cmd>Lspsaga show_line_diagnostics<CR>", opts) -- show  diagnostics for line
 	keymap.set("n", "<leader>d", "<cmd>Lspsaga show_cursor_diagnostics<CR>", opts) -- show diagnostics for cursor
+    keymap.set("n", "[w", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts) -- show workspace diagnostics
+    keymap.set("n", "]w", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts) -- show workspace diagnostics
 	keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 	keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
 	keymap.set("n", "<leader>K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
@@ -69,21 +72,19 @@ configs.qmlls = {
 	},
 }
 
+require("clanger").setup({
+    on_attach = on_attach,
+    capabilities = capabilities,
+})
+
+-- lspconfig["ginko_ls"].setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- })
+
 lspconfig["qmlls"].setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-})
-
-require("pklls-nvim.init").setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = {
-		-- "/home/ubuntu/Documents/PklLanguageServer/.build/debug/pkl-lsp-server", -- debug version
-		"pkl-lsp-server", -- release version
-		-- "--enable-experimental-features",
-		-- "--import-depth",
-		-- "3",
-	},
 })
 
 -- configure yaml server
@@ -124,29 +125,6 @@ lspconfig["sourcekit"].setup({
 		"sourcekit-lsp",
 	},
 	root_dir = lspconfig.util.root_pattern("Package.swift", "project.yml", "Project.swift", ".git", "."),
-	on_attach = on_attach,
-	capabilities = capabilities,
-})
-
--- configure c/c++ server
-lspconfig["clangd"].setup({
-	cmd = {
-		"clangd",
-		"--header-insertion=never",
-		"--background-index",
-		"--clang-tidy",
-		"--limit-references=0",
-		"--limit-results=0",
-		"--log=error",
-		"--offset-encoding=utf-16",
-		"--function-arg-placeholders=false",
-		--"--query-driver=/Applications/ArmGNUToolchain/13.2.Rel1/arm-none-eabi/bin/*gcc*",
-		-- "--query-driver=/usr/bin/aarch64-linux-gnu-gcc*",
-		-- "--query-driver=/**/*",
-		-- "--query-driver=/Users/hermanberdnikov/.platformio/packages/toolchain-xtensa-esp32s3/bin/*gcc*",
-		"--query-driver=/opt/homebrew/bin/arm-none-eabi-gcc",
-	},
-	filetypes = { "c", "cpp", "arduino" },
 	on_attach = on_attach,
 	capabilities = capabilities,
 })

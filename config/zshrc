@@ -2,12 +2,9 @@ if [ "$TERM_PROGRAM" != "Apple_Terminal" ]; then
     eval "$(oh-my-posh init zsh --config ~/dotfiles/config/oh-my-posh.yml)"
 fi
 
-
 # Plugins
 plugins=(git)
-# fpath=(~/.zsh $fpath) # Add completion functions to fpath
-source /usr/share/zsh/plugins/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-setopt interactive_comments # Fix for zsh-autocomplete
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh
 
 ## User configuration
@@ -29,12 +26,11 @@ fi
 
 source <(fzf --zsh)
 
-eval $(thefuck --alias)
+eval "$(zoxide init zsh)"
 
 ## Toolchains & languages
 
-# Java
-# ___MY_VMOPTIONS_SHELL_FILE="${HOME}/.jetbrains.vmoptions.sh"; if [ -f "${___MY_VMOPTIONS_SHELL_FILE}" ]; then . "${___MY_VMOPTIONS_SHELL_FILE}"; fi
+. "$HOME/.cargo/env"
 
 ## Aliases
 alias sshserver="ssh root@$SERVER_IP"
@@ -48,6 +44,9 @@ alias st="swift test 2>&1 | xcbeautify"
 alias sb="swift build"
 alias sr="swift run"
 
-# export PATH=$PATH:~/.platformio/packages/toolchain-xtensa-esp32s3/bin
-# export PATH=$PATH:/Applications/Docker.app/Contents/Resources/bin
-# export PATH=$PATH:~/Qt/6.7.2/macos/bin
+alias ga="git add"
+alias gc="git commit"
+alias gu="git fetch && git pull"
+alias gp="git push"
+
+alias zephyr="source ~/zephyr-venv/bin/activate && cd ~/zephyr-ws/zephyr"

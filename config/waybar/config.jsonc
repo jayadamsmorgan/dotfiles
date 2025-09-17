@@ -1,0 +1,26 @@
+{
+  "layer": "top",
+  "position": "top",
+  "modules-left": ["wlr/workspaces"],
+  "modules-center": ["clock"],
+  "modules-right": ["cpu", "memory", "battery", "network", "tray"],
+
+  "clock": {
+    "format": " {:%a %d %b %H:%M}"
+  },
+  "cpu": {
+    "format": " {usage}%",
+    "interval": 2
+  },
+  "memory": {
+    "format": " {used:0.1f}G"
+  },
+  "battery": {
+    "format": "{icon} {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+  "tray": {
+    "spacing": 10
+  }
+}
+

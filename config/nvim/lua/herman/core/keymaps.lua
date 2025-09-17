@@ -7,6 +7,18 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps
 ---------------------
 
+local opts = { noremap = true, silent = true}
+
+keymap.set({ "n", "i", "v" }, "<Up>", "<Nop>", opts)
+keymap.set({ "n", "i", "v" }, "<Down>", "<Nop>", opts)
+keymap.set({ "n", "i", "v" }, "<Left>", "<Nop>", opts)
+keymap.set({ "n", "i", "v" }, "<Right>", "<Nop>", opts)
+keymap.set({ "n", "i", "v" }, "<S-Up>", "<Nop>", opts)
+keymap.set({ "n", "i", "v" }, "<S-Down>", "<Nop>", opts)
+keymap.set({ "n", "i", "v" }, "<S-Left>", "<Nop>", opts)
+keymap.set({ "n", "i", "v" }, "<S-Right>", "<Nop>", opts)
+
+
 keymap.set("n", "<leader>wq", ":wqa<CR>")
 
 keymap.set("n", "<leader>ff", ":%s/")

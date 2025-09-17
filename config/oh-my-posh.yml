@@ -1,58 +1,50 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json
-final_space: true
-version: 2
-
-blocks:
-  - type: prompt
-    alignment: left
-    newline: true
-
-    segments:
-      - background: transparent
-        foreground: darkGray
-        template: '󰭟  '
-        style: plain
-        type: session
-
-      - type: path
-        style: plain
-        foreground: blue
-        background: transparent
-        template: '{{ .Path }}'
-        properties:
-          style: full 
-
-      - type: git
-        style: plain
-        foreground: green
-        background: transparent
-        template: ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <green>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
-        properties:
-          branch_icon: ' '
-          commit_icon: '@'
-          fetch_status: true
-
-      - type: text
-        style: plain
-        foreground: blue
-        background: transparent
-        template: "{{ if .Segments.Contains \"Git\" }}❯{{ else }} ❯{{ end }}"
-
-      # - type: text
-      #   style: plain
-      #   foreground: blue
-      #   background: transparent
-      #   template: "❯"
 
 secondary_prompt:
-  background: transparent
-  foreground: blue
-  template: '❯❯ '
-
+    template: '❯❯ '
+    foreground: blue
+    background: transparent
 transient_prompt:
-  background: transparent
-  foreground: blue
-  template: "❯ "
-  newline: true
-
-  
+    template: '❯ '
+    foreground: blue
+    background: transparent
+    newline: true
+blocks:
+    - type: prompt
+      alignment: left
+      segments:
+        - properties:
+            cache_duration: none
+          template: "\U000F0B5F  "
+          foreground: darkGray
+          background: transparent
+          type: session
+          style: plain
+        - properties:
+            cache_duration: none
+            style: full
+          template: '{{ .Path }}'
+          foreground: blue
+          background: transparent
+          type: path
+          style: plain
+        - properties:
+            branch_icon: ' '
+            cache_duration: none
+            commit_icon: '@'
+            fetch_status: true
+          template: ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <green>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
+          foreground: green
+          background: transparent
+          type: git
+          style: plain
+        - properties:
+            cache_duration: none
+          template: '{{ if .Segments.Contains "Git" }}❯{{ else }} ❯{{ end }}'
+          foreground: blue
+          background: transparent
+          type: text
+          style: plain
+      newline: true
+version: 3
+final_space: true
