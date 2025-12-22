@@ -1,4 +1,3 @@
--- set leader key to space
 vim.g.mapleader = " "
 
 local keymap = vim.keymap -- for conciseness
@@ -7,8 +6,9 @@ local keymap = vim.keymap -- for conciseness
 -- General Keymaps
 ---------------------
 
-local opts = { noremap = true, silent = true}
+local opts = { noremap = true, silent = true }
 
+-- Disiable arrow keys
 keymap.set({ "n", "i", "v" }, "<Up>", "<Nop>", opts)
 keymap.set({ "n", "i", "v" }, "<Down>", "<Nop>", opts)
 keymap.set({ "n", "i", "v" }, "<Left>", "<Nop>", opts)
@@ -18,27 +18,18 @@ keymap.set({ "n", "i", "v" }, "<S-Down>", "<Nop>", opts)
 keymap.set({ "n", "i", "v" }, "<S-Left>", "<Nop>", opts)
 keymap.set({ "n", "i", "v" }, "<S-Right>", "<Nop>", opts)
 
-
-keymap.set("n", "<leader>wq", ":wqa<CR>")
-
-keymap.set("n", "<leader>ff", ":%s/")
-
+-- Move lines up/down
 keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
+-- Move lines left/right
 keymap.set("n", ">", '"_>>')
 keymap.set("n", "<", '"_<<')
-
 keymap.set("v", ">", '"_>gv')
 keymap.set("v", "<", '"_<gv')
 
+-- Replace regular paste
 keymap.set("v", "p", '"_dP')
-
-keymap.set("n", "<leader>d", '"_d')
-keymap.set("v", "<leader>d", '"_d')
-
-keymap.set("n", "<leader>,", "<C-w>h")
-keymap.set("n", "<leader>.", "<C-w>l")
 
 -- Undo tree
 keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle)
@@ -46,69 +37,16 @@ keymap.set("n", "<leader>ut", vim.cmd.UndotreeToggle)
 -- clear search highlights
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
--- delete single character without copying into register
+-- Delete single character without copying into register
 keymap.set("n", "x", '"_x')
-
--- increment/decrement numbers
-keymap.set("n", "<leader>+", "<C-a>") -- increment
-keymap.set("n", "<leader>-", "<C-x>") -- decrement
-
--- window management
-keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
-keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
-keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
-keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
-
--- keymap.set("n", "<leader>to", ":tabnew<CR>") -- open new tab
--- keymap.set("n", "<leader>tx", ":tabclose<CR>") -- close current tab
--- keymap.set("n", "<leader>tn", ":tabn<CR>") --  go to next tab
--- keymap.set("n", "<leader>tp", ":tabp<CR>") --  go to previous tab
--- keymap.set("n", "<leader>tX", ":tabonly<CR>") --  close other tabs
 
 -- toggle wrap
 keymap.set("n", "<leader>we", ":set wrap!<CR>")
 
--- PlatformIO
-keymap.set("n", "<leader>pr", ":wa<CR>:!pio run<CR>")
-keymap.set("n", "<leader>pu", ":wa<CR>:!pio run -t upload<CR>")
-keymap.set("n", "<leader>pe", ":wa<CR>:!pio run -e ")
-keymap.set("n", "<leader>pd", ":wa<CR>:!pio run -t compiledb<CR>:LspRestart<CR>")
-keymap.set("n", "<leader>pc", ":!pio run -t clean<CR>")
-
--- CMake
-keymap.set("n", "<leader>cm", ":wa<CR>:!cmake . && make<CR>")
-keymap.set("n", "<leader>cr", ":wa<CR>:!cmake . && make && ./build/ssf")
-
--- Makefile
-keymap.set("n", "<leader>mcb", ":wa<CR>:! make -j9 all<CR>")
-keymap.set("n", "<leader>mcr", ":wa<CR>:! make -j9 all<CR>:! ./build/main<CR>")
-keymap.set("n", "<leader>mcc", "!make clean")
-
--- STM32 Makefile
-keymap.set("n", "<leader>msb", ":wa<CR>:! (cd Makefile && make -j9 all)<CR>")
-keymap.set(
-	"n",
-	"<leader>msc",
-	":! (cd Makefile && make -j9 clean && cd CM4 && make -j9 clean && cd ../CM7 && make -j9 clean)<CR>"
-)
-keymap.set(
-	"n",
-	"<leader>msd",
-	":wa<CR>:! (cd Makefile && compiledb -o ../compile_commands.json make -j9 all)<CR>:LspRestart<CR>"
-)
-
--- Swift
-keymap.set("n", "<leader>sb", ":wa<CR>:!swift build<CR>")
-keymap.set("n", "<leader>sr", ":wa<CR>:!swift run<CR>")
-keymap.set("n", "<leader>st", ":wa<CR>:!swift test | xcbeautify<CR>")
-
--- Qmake
-keymap.set("n", "<leader>qr", ":wa<CR>:! (cd build && make && open *.app)<CR>")
-keymap.set("n", "<leader>qb", ":wa<CR>:! (cd build && qmake .. CONFIG+=debug && make clean && make)<CR>")
-
 ----------------------
 -- Plugin Keybinds
 ----------------------
+
 -- Harpoon
 keymap.set("n", "<leader>hh", ":lua require('harpoon.mark').add_file()<CR>")
 keymap.set("n", "<leader>hm", ":lua require('harpoon.ui').toggle_quick_menu()<CR>")
@@ -117,9 +55,6 @@ for i = 1, 9 do
 end
 keymap.set("n", "<M-" .. ".>", ":lua require('harpoon.ui').nav_next()<CR>")
 keymap.set("n", "<M-" .. ",>", ":lua require('harpoon.ui').nav_prev()<CR>")
-
--- vim-maximizer
-keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
@@ -136,9 +71,6 @@ keymap.set("n", "<leader>ti", "<cmd>Telescope lsp_implementations<cr>") -- searc
 keymap.set("n", "<leader>tt", "<cmd>Telescope lsp_type_definitions<cr>") -- search for type definitions in current buffer
 keymap.set("n", "<leader>tr", "<cmd>Telescope lsp_references<cr>") -- search for references in current buffer
 keymap.set("n", "<leader>te", "<cmd>Telescope lsp_workspace_symbols<cr>") -- search for symbols in current workspace
-
--- startup-nvim
-keymap.set("n", "<leader>nf", ":lua require'startup'.new_file()<CR>") -- create new file
 
 -- MarkdownPreview
 keymap.set("n", "<leader>md", ":MarkdownPreviewToggle<CR>")

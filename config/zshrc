@@ -49,4 +49,4 @@ alias gc="git commit"
 alias gu="git fetch && git pull"
 alias gp="git push"
 
-alias zephyr="source ~/zephyr-venv/bin/activate && cd ~/zephyr-ws/zephyr"
+alias zephyr="source ~/zephyr-venv/bin/activate"
