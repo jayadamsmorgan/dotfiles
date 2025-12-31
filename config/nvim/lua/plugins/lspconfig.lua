@@ -39,14 +39,24 @@ return {
 				end, opts)
 			end,
 		})
-		local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-		for type, icon in pairs(signs) do
-			local hl = "DiagnosticSign" .. type
-			vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-		end
+
+		vim.diagnostic.config({
+			underline = true,
+			virtual_text = true,
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = " ",
+					[vim.diagnostic.severity.WARN] = " ",
+					[vim.diagnostic.severity.INFO] = " ",
+					[vim.diagnostic.severity.HINT] = " ",
+				},
+			},
+		})
+
+		local default_capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 		vim.lsp.config("*", {
-			capabilities = require("cmp_nvim_lsp").default_capabilities(),
+			capabilities = default_capabilities,
 			root_markers = { ".git" },
 		})
 
@@ -58,12 +68,9 @@ return {
 		vim.lsp.enable("sourcekit")
 
 		vim.lsp.config("lua_ls", {
-			settings = { -- custom settings for lua
+			capabilities = default_capabilities,
+			settings = {
 				Lua = {
-					-- make the language server recognize "vim" global
-					diagnostics = {
-						globals = { "vim" },
-					},
 					workspace = {
 						-- make language server aware of runtime files
 						library = {
