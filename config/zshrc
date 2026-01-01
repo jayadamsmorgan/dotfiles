@@ -30,8 +30,6 @@ eval "$(zoxide init zsh)"
 
 ## Toolchains & languages
 
-. "$HOME/.cargo/env"
-
 ## Aliases
 alias sshserver="ssh root@$SERVER_IP"
 alias v="nvim"

@@ -122,6 +122,6 @@ config.window_decorations = "RESIZE"
 
 config.color_scheme = "Dracula (Official)"
 config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
-config.font_size = 25
+config.font_size = 16
 
 return config
