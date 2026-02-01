@@ -16,6 +16,7 @@ return {
 			cxx = { "clang-format" },
 			objc = { "clang-format" },
 			objcpp = { "clang-format" },
+			python = { "yapf" },
 		},
 	},
 }

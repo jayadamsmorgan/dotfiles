@@ -59,6 +59,9 @@ keymap.set("n", "<M-" .. ",>", ":lua require('harpoon.ui').nav_prev()<CR>")
 -- nvim-tree
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 
+-- clanger.nvim
+keymap.set("n", "<leader>cm", ':lua require("clanger").ShowMenu()<CR>')
+
 -- telescope
 keymap.set("n", "<leader>tf", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>tb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
