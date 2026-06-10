@@ -28,23 +28,14 @@ source <(fzf --zsh)
 
 eval "$(zoxide init zsh)"
 
-## Toolchains & languages
-
 ## Aliases
-alias sshserver="ssh root@$SERVER_IP"
 alias v="nvim"
 alias zshupd="exec zsh"
-alias vedit="nvim ~/.config/nvim"
-alias zedit="nvim ~/.zshrc"
-alias wedit="nvim ~/.config/wezterm/wezterm.lua"
-
-alias st="swift test 2>&1 | xcbeautify"
-alias sb="swift build"
-alias sr="swift run"
+alias dedit="nvim ~/dotfiles"
 
 alias ga="git add"
 alias gc="git commit"
 alias gu="git fetch && git pull"
 alias gp="git push"
 
-alias zephyr="source ~/zephyr-venv/bin/activate"
+alias zephyr="source ~/ykb-firmware-ws/venv/bin/activate"

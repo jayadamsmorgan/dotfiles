@@ -26,7 +26,7 @@ return {
 				keymap.set("n", "]w", "<cmd>Lspsaga show_workspace_diagnostics<CR>", opts) -- show workspace diagnostics
 				keymap.set("n", "[d", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts) -- jump to previous diagnostic in buffer
 				keymap.set("n", "]d", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts) -- jump to next diagnostic in buffer
-				keymap.set("n", "<leader>K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
+				keymap.set("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts) -- show documentation for what is under cursor
 				keymap.set("n", "<leader>o", "<cmd>LSoutlineToggle<CR>", opts) -- see outline on right hand side
 				keymap.set("n", "<leader>f", function()
 					vim.lsp.buf.format()
@@ -74,8 +74,12 @@ return {
 					workspace = {
 						-- make language server aware of runtime files
 						library = {
+							-- neovim lua bindings
 							[vim.fn.expand("$VIMRUNTIME/lua")] = true,
 							[vim.fn.stdpath("config") .. "/lua"] = true,
+
+							-- hyprland lua bindings
+							["/usr/share/hypr/stubs"] = true,
 						},
 					},
 				},

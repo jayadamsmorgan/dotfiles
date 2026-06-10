@@ -9,7 +9,13 @@ return {
 		})
 	end,
 	opts = {
+		formatters = {
+			dtsformat = {
+				command = "dtsformat",
+			},
+		},
 		formatters_by_ft = {
+			dts = { "dtsformat" },
 			lua = { "stylua" },
 			c = { "clang-format" },
 			cpp = { "clang-format" },

@@ -6,7 +6,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.enable_wayland = false
+config.enable_wayland = true
 config.default_prog = { "/usr/bin/zsh" }
 
 local act = wezterm.action
@@ -107,6 +107,11 @@ config.keys = {
 		mods = "CTRL|SHIFT|ALT",
 		action = act.AdjustPaneSize({ "Right", 1 }),
 	},
+	{
+		key = "D",
+		mods = "CTRL|SHIFT",
+		action = act.ShowDebugOverlay,
+	},
 }
 
 local mux = wezterm.mux
@@ -115,13 +120,41 @@ wezterm.on("gui-startup", function(cmd)
 	window:gui_window():maximize()
 end)
 
-config.window_background_opacity = 0.9
+config.window_background_opacity = 0.95
 config.tab_bar_at_bottom = true
 config.use_fancy_tab_bar = false
-config.window_decorations = "RESIZE"
+config.window_decorations = "NONE"
 
 config.color_scheme = "Dracula (Official)"
 config.font = wezterm.font("JetBrains Mono", { weight = "Bold" })
-config.font_size = 16
+
+local handle = io.popen("/usr/bin/hyprctl monitors -j", "r")
+
+local success = false
+
+if handle then
+	local result = tostring(handle:read("*a"))
+	local suc, _, code = handle:close()
+	if suc and code == 0 then
+		local decoded = wezterm.json_parse(result)
+		local main_monitor
+		for _, monitor in ipairs(decoded) do
+			if monitor.id == 0 then
+				main_monitor = monitor
+			end
+		end
+		if main_monitor then
+			local size = main_monitor.height / 90 / main_monitor.scale
+			wezterm.log_info("Using font_size " .. size)
+			config.font_size = size
+			success = true
+		end
+	end
+end
+
+if success == false then
+	-- Using 16 as fallback
+	config.font_size = 16
+end
 
 return config
